@@ -1,15 +1,13 @@
-require "ruboty/duty/actions/list"
-require "ruboty/duty/actions/add"
-require "ruboty/duty/actions/delete"
+require 'ruboty/duty/actions/list'
+require 'ruboty/duty/actions/add'
+require 'ruboty/duty/actions/delete'
 
 module Ruboty
   module Handlers
-    # description
     class Duty < Base
-      on /list\z/, name: 'list', description: 'description'
-      on /add\z/, name: 'add', description: 'description'
-      on /delete\z/, name: 'delete', description: 'description'
-
+      on(/duty list\z/,   name: 'list',   description: 'List all duties')
+      on(/duty add\z/,    name: 'add',    description: 'Add a new duty')
+      on(/duty delete\z/, name: 'delete', description: 'Delete a duty')
 
       def list(message)
         Ruboty::Duty::Actions::List.new(message).call
@@ -22,7 +20,6 @@ module Ruboty
       def delete(message)
         Ruboty::Duty::Actions::Delete.new(message).call
       end
-
     end
   end
 end
